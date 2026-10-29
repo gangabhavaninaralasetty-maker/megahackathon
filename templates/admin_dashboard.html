@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Admin dashboard | MediGuard AI{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><div class="eyebrow">ADMIN · LOCAL DEMO</div><h1>System dashboard</h1><p>Operational summary only; no patient records or medicine lists are saved.</p></div></section>
+<section class="container py-4">
+<div class="alert alert-warning"><strong>Prototype status:</strong> {{ mode }}. This dashboard is not a clinical quality or safety certification.</div>
+<div class="row g-3 mb-4"><div class="col-md-3"><div class="metric"><b>{{ stats.checks }}</b><span>Medication checks this run</span></div></div><div class="col-md-3"><div class="metric"><b>{{ stats.assistant_requests }}</b><span>AI explanation requests</span></div></div><div class="col-md-3"><div class="metric"><b>{{ stats.pdf_exports }}</b><span>PDF exports this run</span></div></div><div class="col-md-3"><div class="metric"><b>{{ medicine_count }}</b><span>Medicine names loaded</span></div></div></div>
+<div class="row g-3"><div class="col-lg-6"><div class="panel"><h2>Reference data</h2><p>Medicine records loaded: <strong>{{ medicine_count }}</strong></p><p>Interaction rows loaded: <strong>{{ interaction_count }}</strong></p><p>Mode: <strong>{{ mode }}</strong></p><p class="small text-secondary mb-0">Counts are read from the bundled dataset at startup. The dataset has not been clinically validated.</p></div></div><div class="col-lg-6"><div class="panel"><h2>Local Ollama status</h2>{% if ollama_ok %}<p><span class="badge text-bg-success">API reachable</span></p>{% else %}<p><span class="badge text-bg-danger">API unreachable</span></p>{% endif %}<p>Configured model: <code>{{ model }}</code></p><p>Detected models: {{ models|join(', ') if models else 'None returned' }}</p><p class="small text-secondary mb-0">A reachable model does not establish that its medical responses are correct.</p></div></div></div>
+<div class="d-flex gap-2 flex-wrap mt-4"><a class="btn btn-primary" href="/checker">Open safety checker</a><a class="btn btn-outline-primary" href="/technical">Technical dashboard</a><form method="post" action="/admin/logout"><button class="btn btn-outline-secondary">Sign out</button></form></div>
+</section>
+{% endblock %}

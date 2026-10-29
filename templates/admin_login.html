@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Admin sign in | MediGuard AI{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><div class="eyebrow">LOCAL DEMO ADMIN</div><h1>Admin sign in</h1><p>Restricted dashboard for application health and anonymous usage counters.</p></div></section>
+<section class="container py-4"><div class="row justify-content-center"><div class="col-md-6"><div class="panel"><div class="alert alert-warning">This prototype stores counters in memory only. Do not enter or store real patient data.</div>{% if setup_error %}<div class="alert alert-info">{{ setup_error }}</div>{% endif %}<form method="post"><div class="mb-3"><label class="form-label" for="username">Username</label><input class="form-control" id="username" name="username" autocomplete="username" required></div><div class="mb-3"><label class="form-label" for="password">Password</label><input class="form-control" id="password" name="password" type="password" autocomplete="current-password" required></div><button class="btn btn-primary" type="submit">Sign in</button></form></div></div></div></section>
+{% endblock %}

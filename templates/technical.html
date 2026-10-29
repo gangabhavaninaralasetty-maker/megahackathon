@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Technical dashboard | MediGuard AI{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><div class="eyebrow">ENGINEERING & EVALUATION</div><h1>Technical dashboard</h1><p>Architecture, test status and evaluation contract.</p></div></section>
+<section class="container py-4">
+<div class="alert alert-warning"><strong>Evaluation integrity:</strong> bundled metrics are a toy smoke-test fixture only. Official serious-issue recall and 300 near-miss recall are unavailable until the challenge labels and evaluation contract are supplied.</div>
+<div class="row g-3 mb-4">
+<div class="col-md-3"><div class="metric"><b>Flask</b><span>Python backend</span></div></div><div class="col-md-3"><div class="metric"><b>SQLite-ready</b><span>Database option</span></div></div><div class="col-md-3"><div class="metric"><b>Rule-based</b><span>Auditable safety engine</span></div></div><div class="col-md-3"><div class="metric"><b>pytest</b><span>Automated tests</span></div></div>
+</div>
+<div class="panel mb-4"><h2>System architecture</h2><div class="architecture"><div>Web UI<br><small>HTML · CSS · JS</small></div><i>→</i><div>Flask API<br><small>Validation · routes</small></div><i>→</i><div>Safety engine<br><small>Matching · rules</small></div><i>→</i><div>Reference data<br><small>Kaggle CSV · unvalidated</small></div></div></div>
+<div class="panel mb-4"><h2>Run demo evaluation fixture</h2><p>This verifies the metric calculation path only; it does not estimate real-world or challenge performance.</p><button class="btn btn-primary" id="eval-btn">Run toy fixture</button><pre id="eval-output" class="mt-3">No evaluation run yet.</pre></div>
+<div class="panel"><h2>Validate a challenge CSV</h2><p>Validates required columns only. Uploaded data is not activated or persisted.</p>
+<form id="upload-form" class="row g-2"><div class="col-md-3"><select name="kind" class="form-select"><option value="medicines">Medicines</option><option value="interactions">Interactions</option><option value="patients">Patients</option><option value="labels">Labels</option></select></div><div class="col-md-6"><input name="file" type="file" accept=".csv,text/csv" class="form-control" required></div><div class="col-md-3"><button class="btn btn-outline-primary w-100">Validate schema</button></div></form><pre id="upload-output" class="mt-3">No file checked yet.</pre></div>
+<div class="panel mt-4"><h2>Evaluation metrics to report</h2><ul><li>Serious-issue recall: serious true positives / all serious ground-truth issues.</li><li>Precision, recall and F1-score against the official labels.</li><li>False-positive count and low-severity alert volume.</li><li>Brand/generic match accuracy on labelled misspelled inputs.</li><li>Near-miss recall on the official 300 seeded cases.</li></ul><p class="mb-0">Do not use hidden labels during prediction. Only the authorised evaluation process may compare predictions with them.</p></div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='technical.js') }}"></script>{% endblock %}

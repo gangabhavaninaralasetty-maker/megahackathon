@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}MediGuard AI | Medication safety{% endblock %}
+{% block content %}
+<section class="hero"><div class="container py-5">
+<div class="eyebrow">MEDICATION SAFETY · DECISION SUPPORT</div>
+<h1>A second pair of eyes<br><span>for medication safety.</span></h1>
+<p class="lead mt-3">A multi-medicine screening prototype with dataset-based interaction checks, duplicate-entry checks, age and kidney-function review prompts, allergy/condition context prompts, and a basic medicine information lookup.</p>
+<div class="d-flex gap-3 flex-wrap mt-4"><a class="btn btn-light btn-lg" href="/checker">Check a medicine list →</a><a class="btn btn-outline-light btn-lg" href="/assistant">Ask the AI explainer</a><a class="btn btn-outline-light btn-lg" href="/medicine-guide">Basic medicine guide</a><a class="btn btn-outline-light btn-lg" href="/technical">Technical dashboard</a></div>
+<div class="notice mt-4"><strong>Dataset warning:</strong> the supplied Kaggle interaction rows are unvalidated and must be verified against authoritative clinical references.</div>
+<p class="small text-light mt-3 mb-0">Hybrid design: local Ollama explains supplied results; it does not determine whether a medicine combination is safe.</p>
+</div></section>
+<section class="container py-5"><div class="row g-4">
+<div class="col-md-4"><div class="feature h-100"><div class="feature-icon">01</div><h3>Resolve names</h3><p>Normalise spelling and map known aliases. Uncertain fuzzy matches are explicitly marked for verification.</p></div></div>
+<div class="col-md-4"><div class="feature h-100"><div class="feature-icon">02</div><h3>Check supplied rules</h3><p>Run transparent checks against the reference rules currently loaded. Missing rules are never treated as proof of safety.</p></div></div>
+<div class="col-md-4"><div class="feature h-100"><div class="feature-icon">03</div><h3>Explain each alert</h3><p>Every alert includes a reason, suggested review action, confidence and limitations.</p></div></div>
+<div class="col-md-4"><div class="feature h-100"><div class="feature-icon">04</div><h3>All-age context prompts</h3><p>Flags the need for extra review for children, older adults, kidney-function context, allergies and selected health contexts. These are reminders, not validated clinical rules.</p></div></div>
+<div class="col-md-4"><div class="feature h-100"><div class="feature-icon">05</div><h3>Basic medicine lookup</h3><p>Searches names and limited metadata available in the supplied dataset, without inventing dosage or treatment instructions.</p></div></div>
+</div></section>
+<section class="container pb-5"><div class="section-head"><div class="eyebrow">DESIGNED FOR THE CHALLENGE</div><h2>Built to measure alert quality</h2></div>
+<div class="row g-3"><div class="col-md-3"><div class="metric"><b>4</b><span>Safety check categories</span></div></div><div class="col-md-3"><div class="metric"><b>Explainable</b><span>Rule-linked alerts</span></div></div><div class="col-md-3"><div class="metric"><b>Testable</b><span>Automated unit tests</span></div></div><div class="col-md-3"><div class="metric"><b>Honest</b><span>No invented benchmark scores</span></div></div></div>
+</section>
+{% endblock %}
